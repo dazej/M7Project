@@ -7,14 +7,16 @@ package edu.fscj.cen3024c.taskmanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Set;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class UserDTO {
 
     private Integer id;
+    @NotBlank(message = "Username must not be blank")
     private String username;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password; // for inbound writes only
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    private String password;
 
     private Set<String> taskTitles; // names of tasks owned by this user
 
